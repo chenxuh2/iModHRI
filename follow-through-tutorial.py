@@ -1,8 +1,14 @@
 # this script follows through the pyactr tutorial https://github.com/jakdot/pyactr/wiki
 import pyactr as actr
 
-# Model 1 - introduction to the goal buffer and production rules
-playing_memory = actr.ACTRModel()
+# initialize the model with an environment
+environment = actr.environment()
+playing_memory = actr.ACTRModel(environment=environment) # here the environment is an artificial computer screen
+
+# visual module
+# visual stimuli is a list of dictionaries
+
+
 
 # define chunktype 'playgame' two slots 'game' and 'activity'
 actr.chunktype("playgame", "game, activity")

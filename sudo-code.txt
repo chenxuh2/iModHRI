@@ -1,0 +1,38 @@
+Sample action sequence 
+
+step near, pick up kettle, pour water in cup, put away kettle, take out tea bag, put tea bag in cup, pick up spoon
+mix tea, put away spoon , pick up cup, drink tea
+
+--------------------------------------------------------
+
+;available objects for the action
+(chunk-type action name object1 object2 object3)
+
+;chunks:
+;actions, with slots that contain objects which can afford the action
+;objects, state of the object---location, purpose, can they contain, or heat up things
+;situation awareness, e.g., (water boiled y, water in mug y, tea in mug y) 
+
+;goal buffer:
+;keep track of the current action
+;need additional slot to keep track of the sequence?
+;imaginal buffer:
+;situation awareness---modify the state of the objects
+;top down versus bottom up??
+
+Declarative memory---what we expect the participant to already know; pre-knowledge 
+ (mug, color yellow, location x, location y, purpose has sugar, state) ; modified in imaginal buffer, i.e., state empty
+
+Fixed versus flexible sequences 
+- a state in the goal buffer that keeps track of the state of the task, and then uses the production to refer to the state 
+
+We can do this without using the visualization. 
+
+Example of an observer model: 
+- 'step near' is observed, model produces 'pick up kettle', 'take out tea bag' 
+
+Fixed sequences 
+- tea and water in mug before mixing tea  
+	water boiled, water in mug, tea in mug ---> drink tea or mix tea and then drink tea 
+- productions are dependent on situational awareness and incoming information;
+- productions that have a hierarchical structure: use high or low utility to achieve selection;   

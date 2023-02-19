@@ -5,14 +5,23 @@
   (sgp :seed (101 0))
   (sgp :v t :trace-detail medium)
 
-(chunk-type container name heating content)
+;list of all actions
+;actions: step near, pick up, pour water, put (away), take (out), mix, drink
 
-;available objects for the action
-(chunk-type action name object1 object2 object3)
+;list of all objects
+;objects: kettle, cup, tea bag, spoon
 
-;chunks:
+;DM: pre-knowledge, what we expect the participants to already know
+;define chunk types
+;temporarily put data as a chunk to test model
+;currently max(slot)=12
+(chunk-type goal action1 action2 action3 action4 action5 action6 action7 action8 action9 action10 action11 action12)
+
 ;actions, with slots that contain objects which can afford the action
-;objects, state of the object---location, purpose, can they contain, or heat up things
+;currently max(slot)=n(object)
+(chunk-type action name object1 object2 object3 object4)
+;objects, state of the object---location, purpose
+
 
 
 ;goal buffer:

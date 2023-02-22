@@ -7,4 +7,5 @@ import pyactr as actr
 tea_making = actr.ACTRModel()
 
 # create chunk types
-actr.chunktype("container")
+actr.chunktype("container", ("is_empty", "can_heat_water"))
+actr.chunktype("action_sequences")

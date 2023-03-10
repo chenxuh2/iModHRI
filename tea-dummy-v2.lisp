@@ -16,8 +16,8 @@
 
 ;temporarily put data as a chunk to test model
 ;currently max(action slot)=12, max(object slot)=12
-(chunk-type goal start action1 object1 action2 object2 action3 object3 action4 object4 action5 object5 action6 object6 action7 object7 action8 object8 action9 object9 action10 object10 action11 object11 complete)
-
+(chunk-type goal action object next-act next-obj)
+(chunk-type action-list start end current)
 
 ;actions, with slots that contain objects which can afford the action
 ;currently max(slot)=n(object)
@@ -37,7 +37,18 @@
 
 (add-dm
   ;test data
-  (s1 isa goal start stepNear action1 pickUp object1 kettle action2 pourWater object2 cup action3 put object3 kettle action4 take object4 tea action5 put object5 tea action6 pickUp object6 spoon action7 mix object7 tea action8 put object8 spoon action9 pickUp object9 cup complete drink)
+  (s1 isa action-list start stepNear end drink)
+
+  (a1 isa goal action start next-act pickUp next-obj kettle)
+  (a2 isa goal action pickUp object kettle next-act pourWater next-obj cup)
+  (a3 isa goal action pourWater object cup next-act put next-obj kettle)
+  (a4 isa goal action put object kettle next-act take next-obj4 tea)
+  (a5 isa goal action take object tea next-act put next-obj tea)
+  (a6 isa goal action put object tea next-act pickUp next-obj spoon)
+  (a7 isa goal action pickUp object spoon next-act mix next-obj tea)
+  (a8 isa goal action mix object tea next-act put next-obj spoon)
+  (a9 isa goal action put object spoon next-act pickUp next-obj cup)
+  (a10 isa goal action pickUp object cup next-act drink)
 
   ;actions, currently simplified,
   ;for example, "pick up" and "lift" are both "take"

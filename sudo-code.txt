@@ -35,4 +35,15 @@ Fixed sequences
 - tea and water in mug before mixing tea  
 	water boiled, water in mug, tea in mug ---> drink tea or mix tea and then drink tea 
 - productions are dependent on situational awareness and incoming information;
-- productions that have a hierarchical structure: use high or low utility to achieve selection;   
+- productions that have a hierarchical structure: use high or low utility to achieve selection;
+------------------------------------------
+
+A simple way to construct the model:
+- situation awareness (sa):
+slot that keeps descriptions and states of the task
+- for each step of the data, update sa
+- then, given sa, we retrieve a chunk that represents the current phase and next phases
+- and then we return (model output) the next steps in that chunk
+- have additional bottom-up productions that do not change sa, but intervenes
+(e.g., take spoon--mix)
+- have bottom-up production that fires when a dangerous action is predicted

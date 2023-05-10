@@ -4,6 +4,7 @@
 
   (sgp :seed (101 0))
   (sgp :v t :trace-detail medium)
+  (sgp :save-p-history t)
 
 ;list of all actions
 ;actions: step near, pick up, pour water, put (away), take (out), mix, drink
@@ -16,7 +17,9 @@
 
 ;temporarily put data as a set of chunks to test model
 (chunk-type goal action object next-act next-obj)
-(chunk-type action-list start end currentA currentO)
+; !!!next slot is newly added to distinguish from two existing lists
+; but this is not enough currently
+(chunk-type action-list start end next currentA currentO)
 
 ;situation awareness---modify the state of the objects
 ;&&&&&&& NEED CURRENT ACTION AND OBJECT???????
@@ -45,24 +48,39 @@
   (mixTeaStep2 isa phaseAction currentPhase mixTea currentAction mix currentObject Tea nextAction put nextObject spoon)
   (mixTeaStep3 isa phaseAction currentPhase mixTea currentAction put currentObject spoon)
 
+
   ;test data
-  (s1 isa action-list start stepNear end drink)
+  (s1 isa action-list start stepNear end drink next pickUp)
 
-  (a1 isa goal action stepNear next-act pickUp next-obj kettle)
-  (a2 isa goal action pickUp object kettle next-act pourWater next-obj cup)
-  (a3 isa goal action pourWater object cup next-act put next-obj kettle)
-  (a4 isa goal action put object kettle next-act take next-obj tea)
-  (a5 isa goal action take object tea next-act put next-obj tea)
-  (a6 isa goal action put object tea next-act pickUp next-obj spoon)
-  (a7 isa goal action pickUp object spoon next-act mix next-obj tea)
-  (a8 isa goal action mix object tea next-act put next-obj spoon)
-  (a9 isa goal action put object spoon next-act pickUp next-obj cup)
-  (a10 isa goal action pickUp object cup next-act drink)
+  ;(a1 isa goal action stepNear next-act pickUp next-obj kettle)
+  ;(a2 isa goal action pickUp object kettle next-act pourWater next-obj cup)
+  ;(a3 isa goal action pourWater object cup next-act put next-obj kettle)
+  ;(a4 isa goal action put object kettle next-act take next-obj tea)
+  ;(a5 isa goal action take object tea next-act put next-obj tea)
+  ;(a6 isa goal action put object tea next-act pickUp next-obj spoon)
+  ;(a7 isa goal action pickUp object spoon next-act mix next-obj tea)
+  ;(a8 isa goal action mix object tea next-act put next-obj spoon)
+  ;(a9 isa goal action put object spoon next-act pickUp next-obj cup)
+  ;(a10 isa goal action pickUp object cup next-act drink)
 
+  ;test data 2
+  (s2 isa action-list start stepNear end drink next take)
+
+  (b1 isa goal action stepNear next-act take next-obj tea)
+  (b2 isa goal action take object tea next-act put next-obj tea)
+  (b3 isa goal action put object tea next-act pickUp next-obj kettle)
+  (b4 isa goal action pickUp object kettle next-act pourWater next-obj cup)
+  (b5 isa goal action pourWater object cup next-act put next-obj kettle)
+  (b6 isa goal action put object kettle next-act pickUp next-obj spoon)
+  (b7 isa goal action pickUp object spoon next-act mix next-obj tea)
+  (b8 isa goal action mix object tea next-act put next-obj spoon)
+  (b9 isa goal action put object spoon next-act pickUp next-obj cup)
+  (b10 isa goal action pickUp object cup next-act drink)
 )
 
 ;set an initial goal, focus on the goal chunk named s1
-(goal-focus s1)
+;(goal-focus s1)
+(goal-focus s2)
 
 ;start if step near action is detected
 ;create SA in imaginal buffer
@@ -70,6 +88,7 @@
   =goal>
     isa action-list
     start =start ;stepNear
+    next =firstAction ;to distinguish between goals
     currentA nil
     currentO nil
   ?imaginal>
@@ -91,6 +110,7 @@
    +retrieval>
      isa goal
      action =start ;retrieve the goal where current action is stepNear
+     next-act =firstAction ; a1 versus b1
 )
 
 ;iterate through actions
@@ -195,29 +215,6 @@
    !output! (SA updated teaInMug completed)
 )
 
-;LAST STEP in the mixTea phase
-(p update-sa-endPhase-mixTea
-   =imaginal>
-     isa SA
-     updated no
-   =retrieval>
-     isa phaseAction
-     currentPhase mixTea
-     currentAction =currAction
-     currentObject =currObject  ;to retrieve data chunk for continued iteration
-     nextAction nil
-     nextObject nil  ;end of a phase
-==>
-   =imaginal>
-     isa SA
-     updated yes  ;still need some test for completed phase or not
-   +retrieval>
-     isa goal
-     action =currAction
-     object =currObject
-   !output! (SA updated mixTea completed)
-)
-
 ;update SA in imaginal buffer and iterate back to the next action
 (p update-sa-midPhase
    =imaginal>
@@ -256,5 +253,7 @@
   =goal>
   !output! (=endAction)
 )
+
+
 
 ) ;do not delete end-of-file

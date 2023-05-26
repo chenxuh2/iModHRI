@@ -1,0 +1,36 @@
+actions: 
+step near, put, pour, pickup, mix, drink 
+
+objects:
+teabag, mug, cup (trash), kettle, tea, water, shaker, sugar, spoon;
+box, table 
+
+relations:
+(put) into, (put) on, (pour) into, (mix) in, (pickup) from
+
+situation awareness (SA): 
+- is tea in the mug? 
+- is water boiled? (yes)
+- is water in the mug? 
+
+put the information below into a chunk or update via SA (some are changing and some are constant): 
+- mug: has tea, has water, has sugar, has spoon (updated as long as 'pour into', 'mix' occur )
+- what are being held in the hands? 
+
+constant
+- cup: has teabag (initiate with either this or empty)
+- shaker: has sugar (starting state)
+
+
+use a slot to catch accidents or mistakes 
+
+ 
+--------------------------------------------------------------
+
+
+- model description 
+- background draft until current status 
+- finish the model by June 5 
+- paper deadline is not firm 
+- do experiment and paper in parallel 
+

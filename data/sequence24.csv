@@ -1,0 +1,12 @@
+"subject","trial","action","object","location","relation","...7","step"
+4,8,"stepnear",NA,NA,NA,NA,1
+4,8,"pickup","shaker","table","from",NA,2
+4,8,"pour","sugar","mug","into",NA,3
+4,8,"put","shaker","table","on",NA,4
+4,8,"pickup","kettle","table","from",NA,5
+4,8,"pour","water","mug","into",NA,6
+4,8,"put","kettle","table","on",NA,7
+4,8,"pickup","teabag","box","from",NA,8
+4,8,"put","teabag","mug","into",NA,9
+4,8,"pickup","mug","table","from",NA,10
+4,8,"drink",NA,NA,NA,NA,11

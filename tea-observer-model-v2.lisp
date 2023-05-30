@@ -7,10 +7,15 @@
   (sgp :save-p-history t)
 
 ;list of all actions
-;actions: step near, pick up, pour water, put (away), take (out), mix, drink
+;actions: step near, pick up, pour, put (away), mix, drink
 
 ;list of all objects
-;objects: kettle, cup, tea bag, spoon
+;objects:
+;teabag, mug, cup (trash), kettle, tea, water, shaker, sugar, spoon;
+;box, table
+
+;relations:
+;(put) into, (put) on, (pour) into, (mix) in, (pickup) from
 
 ;DM: pre-knowledge, what we expect the participants to already know
 ;define chunk types

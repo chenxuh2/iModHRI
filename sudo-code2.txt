@@ -34,3 +34,16 @@ use a slot to catch accidents or mistakes
 - paper deadline is not firm 
 - do experiment and paper in parallel 
 
+--------------------------------------------------------------
+
+
+I think one way to build an “observer” model is based on an “actor” model.. 
+so the observer is mentally doing the task along with the observer, always asking “what would i do next”? 
+The tricky part is that the answer to that is probabilistic and act-r forces a single selection of production rule. 
+
+but you could get do a kind of sample based simulation, where the model simulates next actions for some number of times K and then aggregates statistics.  K is a parameter .. .K= 1 is fast and lazy, K= 10 is slow and cognitively intensive.  
+
+
+
+
+

@@ -21,9 +21,7 @@
 ;define chunk types
 
 ;temporarily put data as a set of chunks to test model
-(chunk-type goal action object next-act next-obj)
-; !!!next slot is newly added to distinguish from two existing lists
-; but this is not enough currently
+(chunk-type goal subject trial action object location relation next-act next-obj)
 (chunk-type action-list start end next currentA currentO)
 
 ;situation awareness---modify the state of the objects
